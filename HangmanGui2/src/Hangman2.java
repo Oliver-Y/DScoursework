@@ -12,17 +12,15 @@
  * Thus, using these three listeners, you can effectively control an object on the canvas. 
  * 
  * 
- * 2. The objectDraw.rect probably defines what a rectangle is. Since there are 2
- * different rectangle classes within object draw (FilledRect,FramedRect).
- * The rectangle class probably overwrites methods such as moveTo or setSize 
- * and has field to keeps track of the 4 points of a rectangle. 
- * moveTo and setSize should be overwritten since moving 
- * all the points on a rectangle and changing the size of a rectangle will probably
- * be different for other shapes. Thus, the purpose of objectDraw.rect
- * is probably to provide a general guideline (through fields and methods) 
- * of what a rectangle is, with a few methods common specific to rectangles, 
- * and is meant to be extended and specifically implemented
- * for different rectangle classes such as FilledRect or FramedRect.
+ * 2. The objectDraw.rect class probably loosely defines a rectangular frame for a lot of 
+ * shapes to fit in. Which is why Framed Oval, FilledRect, Framed Rectangular, are all classes that extend 
+ * obejctDraw.rect. However, this class probably can't be instantiated (since it isn't a specific shape itself,
+ * therefore is probably an abstract class. That being said, there are probably common concrete 
+ * methods that have been implemented which might be shared among all objects with a rectangular frame. The abstract
+ * class probably also has abstract methods that will force the children classes to implement. Methods such as Move to 
+ * or Change color might vary from shape to shape, therefore need to be implemented at a lower level. Thus the purpose of
+ * objectdraw.Rect is probably an abstract class that has concrete and abstract methods to guide the creation of children class. 
+ * 
  * 
  * 3. 
  * RemovefromCanvas means the object is permanently deleted from the Canvas. While hide will
