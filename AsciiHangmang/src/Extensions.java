@@ -15,6 +15,8 @@ import java.util.Scanner;
 
 public class Extensions {
 	public static void main(String[] args) {
+		System.out.println("breakpiont1"); 
+		System.out.println("breakpoint2"); 
 		play(0,0);	
 	}
 	
@@ -33,7 +35,9 @@ public class Extensions {
 		int score = 0; 
 		//Flag for seeing if a match has been found. If not, display the Hangman
 		boolean h_flag = false;
+		//Flag for keeping track of all incorrect guesses
 		boolean r_flag = false;
+		//Flag to see if the CPU is playing
 		boolean CS_flag = false;
 		//Displays partially guessed word
 		char[] output; 
@@ -51,15 +55,11 @@ public class Extensions {
 		} 
 		
 		else {
-		}
-
-		
+		}		
 		System.out.println("For best results, please run this from the command line.");
 		System.out.print(prompt);
 		letters = s.nextLine().trim().toUpperCase().toCharArray();
 		for(int i=0; i<10; i++) System.out.println();
-
-		
 		
 		
 		//Array to keep track of Repetitions 
@@ -128,7 +128,7 @@ public class Extensions {
 					h_flag = true;
 				}
 			}
-			
+			//Sacrifce Option
 			if(guess.equals("sacrifice")) {
 				h_flag = false;
 			}
@@ -141,6 +141,7 @@ public class Extensions {
 						r_flag = true;
 					}
 				}
+				//flag to check for repetitions in incorrect guesses array
 				if(!r_flag) {
 					incorr_guess[incorr_guess_counter++] = user_guess; 
 				}
@@ -170,6 +171,7 @@ public class Extensions {
 			}
 			//Formatting things
 			System.out.println(" ");
+			//Printing out all incorrect guesses
 			System.out.print("Incorrect guess: ");
 			for(int i = 0; i < incorr_guess_counter; ++i) {
 				System.out.print(incorr_guess[i] +" ");
@@ -181,6 +183,7 @@ public class Extensions {
 		System.out.println("play again?"); 
 		String temp;
 		temp = s.nextLine();
+		//Replay with Recursion, swap the parameters since players are swapped
 		if(temp.equals("yes")) {
 			System.out.println("Swap Spots!");
 			play(player2,player1);
