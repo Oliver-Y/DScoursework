@@ -1,6 +1,6 @@
 /*
  * 3.4: Since, under the hood, the memory for the Array doubles in size everytime capacity exceeds. However, if we want to manage 
- * the memory allocation now to exceed a certain amount, however, at different stages in the program the ArrayList may have
+ * the memory allocation not to exceed a certain amount, however, at different stages in the program the ArrayList may have
  * different sizes, then the explicit set size method might be useful. 
  * 
  * 
