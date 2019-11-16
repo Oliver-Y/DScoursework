@@ -32,7 +32,7 @@ public class Cell {
 			
 		}
 		catch (ClassCastException E) {
-			System.out.println("not an object"); 
+			System.out.println("Not a Cell type"); 
 			return false; 
 		}
 	}

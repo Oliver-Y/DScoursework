@@ -196,13 +196,16 @@ public class Grid extends ActiveObject {
 	}
 	
 	public void run() {
+		// TODO:  Insert the logic to play the Game of Life
 		//update the thing in one go. 
 		while(true) {
 			if(running) {			
+				//Loop through
 				for(int i = 0; i < grid.length; ++i) {
 					for (int j = 0; j < grid[0].length; ++j) {
 						//If its alive check to see if it dies
 						if(isAlive(i,j)) {
+							//Basic Logic
 							if(liveNeighbors(i,j) >= 4 || liveNeighbors(i,j) <= 1){
 								round[i][j] = 1; 
 							}
@@ -217,8 +220,6 @@ public class Grid extends ActiveObject {
 						}	
 					}
 				}
-				//System.out.println("finished with loops"); 
-				// TODO:  Insert the logic to play the Game of Life
 				update(round); 
 			}
 			pause(100);	

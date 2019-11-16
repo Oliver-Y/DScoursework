@@ -10,7 +10,6 @@ import objectdraw.*;
  *  
  */
 
-
 public class wildGnozz extends ActiveObject {
 	private VisibleImage gnozz; 
 	private DrawingCanvas c;
