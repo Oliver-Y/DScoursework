@@ -18,6 +18,7 @@ public class wildGnozz extends ActiveObject {
 	private int speedy; 
 	private SpaceInvaders controller; 
 	private boolean run; 
+	public int index; 
 	private Image storedImage; 
 	Ship spaceship; 
 	
@@ -28,28 +29,35 @@ public class wildGnozz extends ActiveObject {
 		controller = sc; 
 		storedImage = i; 
 		run = true; 
+		index = spaceship.getGnozz().size();
 		spaceship.addGnozz(this);
 		start();
 	}	
 	public void clear() {
-		try {
-			gnozz.removeFromCanvas();
-			spaceship.removeGnozz(this);
-		}
-		catch(IllegalStateException e) {
-			
-		}
+		//gnozz.removeFromCanvas();
+		//spaceship.removeGnozz(this);
 		run = false; 
 	}
-	//Create 2 more GnozzDawgs and pass it to the ship to keep track
+	public VisibleImage getPic() {
+		return gnozz; 
+	}
+	//Create 2 more GnozzDawgs and pass it to the ship to keep track, put a hard cap size of 50
 	public boolean checkLaser(Laser s) {
-		if(this.gnozz.overlaps(s.getPic()) && s.fromShip()) {
+		if(this.gnozz.overlaps(s.getPic()) && s.fromShip() && spaceship.getGnozz().size() <= 50) {
+			try {
+				gnozz.removeFromCanvas(); 	
+			}
+			catch(IllegalStateException e) {
+				
+			}
+			spaceship.removeGnozz(this);
 			wildGnozz temp1 = new wildGnozz(storedImage,controller,c,spaceship,gnozz.getX() + 50, gnozz.getY() + 50); 
 			wildGnozz temp2 = new wildGnozz(storedImage,controller,c,spaceship,gnozz.getX() - 50, gnozz.getY() - 50);
-			spaceship.addGnozz(temp1);
-			spaceship.addGnozz(temp2);
-			gnozz.removeFromCanvas(); 
-			spaceship.removeGnozz(this);
+			//spaceship.addGnozz(temp1);
+			//spaceship.addGnozz(temp2);
+			//Protected instance variables
+			controller.score += 10;
+			controller.GnozzCount++;
 			return true;
 		}
 	
@@ -71,11 +79,11 @@ public class wildGnozz extends ActiveObject {
 		}
 		try {
 			gnozz.removeFromCanvas(); 
+			spaceship.removeGnozz(this);
 		}
 		catch(IllegalStateException e) {
 			
 		}
-		spaceship.removeGnozz(this);
 	}
 	
 }

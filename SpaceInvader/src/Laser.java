@@ -94,7 +94,7 @@ public class Laser extends ActiveObject {
 				break; 
 			}
 			//Check for Gnozz collisions
-			if(gnozz != null) {
+			if(gnozz != null && fromShip) {
 				for(int j = 0; j < gnozz.size(); ++j) {
 					if(gnozz.get(j).checkLaser(this)) {
 						laser.removeFromCanvas(); 

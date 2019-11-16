@@ -51,6 +51,7 @@ public class SpaceInvaders extends WindowController implements KeyListener {
 	protected Text playGame;
 	protected Text playAgain;
 	protected int score;
+	protected int GnozzCount;
 
 	// Remember whether a key is currently depressed
 	protected boolean keyDown;
@@ -98,7 +99,6 @@ public class SpaceInvaders extends WindowController implements KeyListener {
 			//Add in objects so everyone knows everyone else
 			fleet.addShip(ship);
 			ship.addGnozz(gnozz); 
-			fleet.addGnozz(gnozz);
 		}
 	}
 	
@@ -155,13 +155,15 @@ public class SpaceInvaders extends WindowController implements KeyListener {
 		ship.clear(); 
 		fleet.clear(); 
 		gnozz.clear(); 
-		playGame.setText("Game over! Your score: " + score + "/540 points.");
-		playGame.moveTo(WIDTH/4 - 50, HEIGHT/2-40);
+		
+		playGame.setText("Game over! Your score: " + score + " Gnozz Count:" + GnozzCount);
+		playGame.moveTo(WIDTH/4 - 150, HEIGHT/2-40);
 		playGame.setColor(Color.red);
 		playGame.show();
 		playAgain.setColor(Color.red);
 		playAgain.show();
 		score = 0; 
+		GnozzCount = 0; 
 	}
 	
 	//Win condition met
@@ -170,13 +172,14 @@ public class SpaceInvaders extends WindowController implements KeyListener {
 		ship.clear(); 
 		fleet.clear(); 
 		gnozz.clear(); 
-		playGame.setText("Congrats bro Your score: " + score + "/540 points.");
-		playGame.moveTo(WIDTH/4 - 50, HEIGHT/2-40);
+		playGame.setText("Congrats bro Your score: " + score +  " Gnozz Count:" + GnozzCount);
+		playGame.moveTo(WIDTH/4 -150, HEIGHT/2-40);
 		playGame.setColor(Color.green);
 		playGame.show();
 		playAgain.setColor(Color.green);
 		playAgain.show();
 		score = 0; 
+		GnozzCount = 0; 
 	}
 	
     public static void main(String[] args) { 

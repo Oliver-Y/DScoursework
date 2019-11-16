@@ -11,21 +11,19 @@ public class Fleet extends ActiveObject {
 	private static final int ALIEN_SIZE= 40;
 	
 	//initialize variables
-
 	private boolean movingRight = true;
-	private int wait = 900;
+	private int wait = 1500;
 	private int moveCount = 0;
 	private int height = 0;
 	
 	//Keeps track of how many aliens left in each column
-	private int[] rowCount = {5,5,5,5,5,5,5,5,5};
+	private int[][] rowCount; 
 	//Other objects
 	private VisibleImage[][] fleet = new VisibleImage[6][9];
 	private SpaceInvaders sc;
 	private Ship spaceship; 
 	private DrawingCanvas canvas; 
 	private boolean run; 
-	private wildGnozz gnozz; 
 	
 	//initialize fleet
 	public Fleet(Image[] enemyShips, SpaceInvaders sc, DrawingCanvas canvas,Ship ship) {
@@ -35,26 +33,38 @@ public class Fleet extends ActiveObject {
 						ALIEN_SIZE, ALIEN_SIZE, canvas);
 			}
 		}	
+		rowCount = new int[fleet.length][fleet[0].length]; 
+		for(int i = 0; i < rowCount.length; ++i) {
+			for(int j = 0; j < rowCount[0].length; ++j) {
+				rowCount[i][j] = 0; 
+			}
+		}
 		this.sc = sc;
 		this.canvas = canvas; 
 		this.spaceship = ship; 
 		run = true; 
 		start();
 	}
-	public void addGnozz(wildGnozz g) {
-		gnozz = g;
+	
+	public int selectRow(int random) {
+		for(int i = rowCount.length-1; i >= 0 ; --i) {
+			if(rowCount[i][random] == 0) {
+				return i; 
+			}
+		}
+		return -1; 
 	}
-	
-	
 	public void shoot() {
 		//Chooses a random column;
-		int i = (int)(Math.random() * 9); 
-		while(rowCount[i] <= 0) {
-			i = (int)(Math.random() * 9); 
-		}
+		int j  = (int)(Math.random() * 9); 
+		int i = selectRow(j); 
+		while(i == -1) {
+			j = (int)(Math.random() * 9); 
+			i = selectRow(j); 
+		} 
 		
 		//Chooses the alien that is suppose to shoot
-		VisibleImage temp = fleet[rowCount[i]][i]; 
+		VisibleImage temp = fleet[i][j]; 
 		new Laser(temp.getX() + ALIEN_SIZE/2, temp.getY() + ALIEN_SIZE, false, this,spaceship,canvas);
 		
 	}
@@ -96,7 +106,7 @@ public class Fleet extends ActiveObject {
 					try {
 						fleet[i][j].removeFromCanvas();
 						//Decrement the row
-						rowCount[j]--; 
+						rowCount[i][j] = 1; 
 						return true;
 					}
 					catch (IllegalStateException e) {
@@ -132,12 +142,15 @@ public class Fleet extends ActiveObject {
 	}
 	
 	private boolean checkWin() {
-		for(int i = 0; i < fleet[0].length; ++i) {
-				if(rowCount[i] != -1) {
-					return false; 
+		
+		for(int i = 0; i < rowCount.length; ++i) {
+			for (int j = 0; j < rowCount[0].length; ++j) {
+				if(rowCount[i][j] == 0) {
+					return false;
 				}
+			}
 		}
-		return true;
+		return true; 
 	}
 	public void addScore(int x) {
 		sc.score += x; 

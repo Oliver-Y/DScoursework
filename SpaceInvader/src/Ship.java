@@ -32,9 +32,7 @@ public class Ship extends ActiveObject {
 	}
 	//Gnozzdawg helpers
 	public void addGnozz(wildGnozz g) {
-		if(gnozz.size() <= 10) {
-			gnozz.add(g); 
-		}
+		gnozz.add(g); 
 	}
 	public void removeGnozz(wildGnozz g) {
 		gnozz.remove(g);
@@ -43,7 +41,7 @@ public class Ship extends ActiveObject {
 	public ArrayList<Laser> getLasers(){
 		return lasers;
 	}
-	//Movement flags for windo controller
+	//Movement flags for window controller
 	public void set_R(boolean b) {
 		keyPressedR = b;
 	}
@@ -63,12 +61,25 @@ public class Ship extends ActiveObject {
 	}
 	//Clearing the ship
 	public void clear() {
+//		System.out.println("size of the array" + gnozz.size());
+		for(int i = 0; i < gnozz.size(); ++i) {
+			try {
+				gnozz.get(i).getPic().removeFromCanvas(); 
+			}
+			catch(IllegalStateException e) {
+				
+			}
+			gnozz.clear(); 
+		}
 		try {
 			ship.removeFromCanvas(); 
 		}
 		catch(IllegalStateException e){
 			
 		}
+	}
+	public ArrayList<wildGnozz> getGnozz(){
+		return gnozz; 
 	}
 	//Method for checking if the ship has collided with a laser
 	public boolean checkLaser(Laser s) {
