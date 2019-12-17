@@ -45,19 +45,17 @@ public class Species {
 			//Name and Color
 			name = s.nextLine(); 
 			color = s.nextLine(); 
-			while(s.hasNextLine()){
-				//Catching to see if its at the end of the line
+			while(true){
 				String temp; 
 				try {
 					temp = s.next(); 
 				}
+				// Break out if no elements can be found. 
 				catch(NoSuchElementException e) {
-					break; 
+
+					break;
 				}
 				Instruction i;
-				//Check to see if Break
-			//	System.out.println(temp); 
-				//Process Instruction
 				switch(temp) {
 				case "hop":
 					i = new Instruction(Instruction.HOP,0,-1);
@@ -69,8 +67,12 @@ public class Species {
 					i = new Instruction(Instruction.RIGHT,0,-1); 
 					break;
 				case "infect": 
-					i = new Instruction(Instruction.INFECT,0,0); 	
-							//Integer.parseInt(s.next()));
+					if(s.hasNextInt()) {
+						i = new Instruction(Instruction.INFECT,0,Integer.parseInt(s.next())); 
+					}
+					else {
+						i = new Instruction(Instruction.INFECT,0,1); 
+					}
 					break;
 				case "ifempty": 
 					i = new Instruction(Instruction.IFEMPTY,0,Integer.parseInt(s.next()));
@@ -97,10 +99,10 @@ public class Species {
 					i = new Instruction(Instruction.IFEQ,Integer.parseInt(s.next()),Integer.parseInt(s.next()));
 					break;
 				case "inc":
-					i = new Instruction(Instruction.INC,0,Integer.parseInt(s.next()));
+					i = new Instruction(Instruction.INC,0,0);
 					break;
 				case "dec":
-					i = new Instruction(Instruction.DEC,0,Integer.parseInt(s.next()));
+					i = new Instruction(Instruction.DEC,0,0);
 					break;
 				case "set": 
 					i = new Instruction(Instruction.SET,0,Integer.parseInt(s.next()));
@@ -108,13 +110,7 @@ public class Species {
 				default:
 					i = null;  
 				}
-				//Advance to the next Line
-				if (i == null) {
-					s.close(); 
-					break; 
-				}
-				temp = s.nextLine();
-				
+				//Add the instruction set
 				program.add(i); 
 			}
 			
@@ -171,6 +167,7 @@ public class Species {
 	
 	
 	public static void main(String[] args) {
+		
 		Species s = new Species("Hop.txt"); 
 		Assert.condition(s.getName().equals("Hop"), "Return name doestn' works");
 		Assert.condition(s.getColor().equals("blue"), "Return doestn' name works");
@@ -181,6 +178,7 @@ public class Species {
 		Assert.condition(s.programSize() == 2, "Program Size Doesn't work");
 		//String Literal test this is absurd Mr.Gnozzio 
 		Assert.condition(s.programToString().equals("hop\ngo 1\n"), "ProgramStep doesn't work");
+	//	System.out.println(s.programToString());
 	
 
 		

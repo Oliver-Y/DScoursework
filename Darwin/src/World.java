@@ -47,8 +47,10 @@ public class World<E>
 	 * @post returns true if pos is an (x,y) location in the bounds of
 	 *       the board.
 	 */
+	
 	boolean inRange(Position pos)  {
-		if((pos.getX() >= 0 && pos.getX() <= width()) && (pos.getY() >= 0 && pos.getY() <= height())) {
+		//Between X-Range and Y-Range
+		if((pos.getX() >= 0 && pos.getX() < width()) && (pos.getY() >= 0 && pos.getY() < height())) {
 			return true;
 		}
 		return false;
@@ -71,10 +73,11 @@ public class World<E>
 	public E get(Position pos) {
 		return data.get(pos.getY(),pos.getX()); 
 	}
+
 	public static void main(String[] args) {
 		World<Integer> w = new World<Integer>(10,10); 
 		Position inp = new Position(8,8); 
-		Position outp = new Position(15,10); 
+		Position outp = new Position(10,15); 
 		//Getter Methods
 		Assert.condition(w.height() == 10, "height doesn't work");
 		Assert.condition(w.width() == 10, "width doesn't work");

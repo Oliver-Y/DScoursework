@@ -66,4 +66,20 @@ public class Position {
 		}
 		return null;
 	}
+	
+	public Position getAdjacent(int direction, int steps) {
+		switch (direction) {
+		case NORTH :
+			return new Position(x, y - steps);
+		case SOUTH :
+			return new Position(x, y + steps);
+		case EAST :
+			return new Position(x + steps, y);
+		case WEST :
+			return new Position(x - steps, y);
+		default :
+			Assert.fail("bad direction");
+		}
+		return null;
+	}
 }
