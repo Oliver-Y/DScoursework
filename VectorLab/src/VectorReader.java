@@ -12,12 +12,14 @@ import java.util.*;
  * sorted from smallest to largest) 
  * 
  * 2. A comparator could store a collection of protected Comparators that each is responsible for
- * comparing in a different field. There'll be a method that will allow the user to select which Comparator 
- * they want to use at the moment.  And by adding a variety of different comparators
- * to this compound_comparator class, the compare method will switch between the different Comparators. 
+ * comparing in a different field. There will be an instance data type (mode) that changes the state of the 
+ * compound_Comparator. There will be mutator methods (and probably Accessor method) to modify the data value of mode 
+ * And with different modes, different Comparators will be used to compare. 
+ * By allowing the user to switch between Comparators, the compare method will switch between the different Comparators
+ * and compare between different fields. 
  * 
- * There could also be a state variable called origin, that specifies when the sorting starts. So now the user 
- * can use a method to decide which elements they want to exclude from the sorting algorithm. 
+ * There could also be a state variable called origin, that specifies when the sorting starts. Likewise, a mutator method
+ * will exist to modify where the sorting can start. So now the user can use a method to decide which elements they want to exclude from the sorting algorithm. 
  * 
  */
 
@@ -27,8 +29,7 @@ public class VectorReader {
 	
 		//Initializing Reader + Creating Vector of Students
 		MyVector<Student> v = new MyVector<Student>(); 
-		//Modify this path to sort your CSV
-		//The sample CSV is attached in the bin + src move it to your User
+		//Modify this path to the path of your CSV (or use the sample CSV I gave you) 
         String csvFile = "/Users/oye20/sample.csv"; 
         BufferedReader br = null;
         String line = "";
