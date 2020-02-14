@@ -2,10 +2,10 @@ import java.awt.Color;
 
 import objectdraw.*;
 public class VariegatedStairs implements StairInterface {
-	FramedRect sq;
+	private FramedRect sq;
 	//Stair Interface so move can be called for both VariegatedStairs + EmptyStairs
-	StairInterface s1; 
-	StairInterface s2; 
+	private StairInterface s1; 
+	private StairInterface s2; 
 	public VariegatedStairs(Location origin,double length, DrawingCanvas canvas, Color c) {
 		//Draw a Rectangle
 		sq = new FramedRect(origin,length,length,canvas); 

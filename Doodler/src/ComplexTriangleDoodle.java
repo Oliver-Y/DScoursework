@@ -1,16 +1,43 @@
 import objectdraw.*;
 import java.awt.Color;
+/*
+ * 
+ * 
+ * 1. Program A will take less time than Program B when the time is smaller than 29.7181 seconds. After solving for n when setting the 
+ * two equations equal to each other, 2^n/1000 (Program A) passes 1000* n^2 (Program B) at t = 29.7181 
+ * 
+ * 2. The complexity is O(n), because the program would have to run through the entire String once to copy and then the extra 
+ * characters B will take a constant time so the complexity is O(n)
+ * 
+ * 3. public int Binary (int decimal){
+ *    if( decimal == 0){
+ *        return 0;
+ *    }
+ *    else{
+ *       return decimal % 2 + 10 * (Binary(decimal/2)); 
+ *    }
+ * }
+ * 
+ * The base case is when the number hits 0. Otherwise use modulus 2 to get the smallest bit in the number. Then divide the decimal number 
+ * by 2 but multiply it by 10 to place the next bit(modulus 2) in the right position (ex: 10s, 100s, thousands)
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 
 public class ComplexTriangleDoodle implements TriangleDoodle {
 	//Lines of Base middle triangle
-	Line s1; 
-	Line s2; 
-	Line s3;
+	private Line s1; 
+	private Line s2; 
+	private Line s3;
 	//TriangleDoodle so move can be called for both ComplexTriangleDoodle + EmptyTriangleDoodle
 
-	TriangleDoodle t1;
-	TriangleDoodle t2; 
-	TriangleDoodle t3; 
+	private TriangleDoodle t1;
+	private TriangleDoodle t2; 
+	private TriangleDoodle t3; 
 	
 	public ComplexTriangleDoodle(Location l, Location r, Location t, DrawingCanvas canvas) {
 		//Figure out distances for Triangle
