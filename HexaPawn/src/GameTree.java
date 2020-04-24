@@ -55,9 +55,6 @@ public class GameTree {
 			}
 			if (b.win(opp)) {
 				inc(); 
-				//System.out.println("Count " + count++); 
-				//System.out.println(opp + " has won");
-				//System.out.println(b);
 			}
 			//Otherwise keep creating new GameTrees
 			else {
@@ -76,10 +73,7 @@ public class GameTree {
 						nextBoards.add(child); 
 				}
 				//Setting up parent 
-				/*System.out.println("child's parents: " + child.getParent()); 
-				System.out.println("current node " + this); 
-				System.out.println("parent " + this.getParent()); */
-				//Base Case
+				//Base Case parent for the rootnode
 				if(parent == null) parent = this; 
 			}
 		}
@@ -92,7 +86,7 @@ public class GameTree {
 	public GameTree getParent() {
 		return parent; 
 	}
-	
+	//Function for testing
 	private static void inc(){
 		count++; 
 	}
@@ -135,6 +129,7 @@ public class GameTree {
 		return count; 
 	}
 	
+	//Print out Children
 	public static void printChildren(GameTree node) {
 		System.out.println("Parent");
 		System.out.println(node.getBoard()); 

@@ -17,6 +17,7 @@ public class RandomPlayer implements Player {
 	
 	public Player play(GameTree node, Player opp) {
 		Player winner = null; 
+		//Generate random move
 		ArrayList<GameTree> temp = node.getChildren();
 		int rand = (int)(Math.random() * temp.size()); 
 		board = temp.get(rand).getBoard(); 
