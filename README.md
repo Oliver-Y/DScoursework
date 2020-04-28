@@ -19,3 +19,21 @@ For 3.6, you haven't provided an actual implementation.
 
 
 #### Total:  7.75/10
+
+## Grade for Hexapawn Lab:
+
+Criterion | Points
+--- | ---
+Game Tree | 2.75 / 3
+Human Player | 2.75 / 3
+Random Player | 3 / 3
+Computer Player | 3 / 3
+Thought Questions | 8/9
+
+Notes:  For the second thought question, what are the "perfect pathways" of which you speak? Describe the winning strategy.  What about for larger boards? 
+
+Within the GameTree class, you should use the constants provided by HexBoard for the colors.  Your use of a static variable count isn't ideal.  What if someone made two game trees?  Count recursively.  
+
+In the HumanPlayer class, it would be better to make a single Scanner and store it as an instance variable.  This avoids creating a new one every time play is called. More importantly, why are you reinventing the wheel with Moves?  Use the existing methods provided by the HexBoard class.  
+
+#### Total:  19.5/21
