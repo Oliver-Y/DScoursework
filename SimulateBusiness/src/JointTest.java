@@ -1,3 +1,4 @@
+//Joint Test
 import structure5.*; 
 /*
  * 1. Through JointTest, by using the same customers for both simulations, the MultiQueue strategy seems to 

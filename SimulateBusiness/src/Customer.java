@@ -1,4 +1,4 @@
-
+//Customer Class
 public class Customer implements Comparable<Customer> {
 	private int arrival; 
 	private int service; 

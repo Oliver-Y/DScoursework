@@ -1,6 +1,6 @@
 import structure.Vector;
 import java.util.ArrayList;
-
+//Push
 public class RandomPlayer implements Player {
 	private HexBoard board; 
 	private char side; 

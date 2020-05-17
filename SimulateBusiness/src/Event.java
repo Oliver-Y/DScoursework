@@ -1,4 +1,4 @@
-
+//Event Class
 public class Event implements Comparable<Event> {
 	private int time; 
 	private char type; 
