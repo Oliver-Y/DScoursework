@@ -37,3 +37,31 @@ Within the GameTree class, you should use the constants provided by HexBoard for
 In the HumanPlayer class, it would be better to make a single Scanner and store it as an instance variable.  This avoids creating a new one every time play is called. More importantly, why are you reinventing the wheel with Moves?  Use the existing methods provided by the HexBoard class.  
 
 #### Total:  19.5/21
+
+## Grade for Simulating Business Lab:
+
+Criterion | Points
+--- | ---
+Use of a PriorityQueue | 2 / 2
+Correct use of comparators or natural sorting order | 2/2
+Computes weight times appopriately | 2/2
+Correct logic for processing single queue events | 1 / 2
+Correct logic for processing multi queue events | 2 / 2
+Simulation compares the same arrivals across both simulations | 1 / 1
+Style and efficiency | 1/2
+Thought Questions | 5/8
+
+Notes:  For the compareTo method, no need for an if/else if/else.  Just subtract the two times and return the result.  
+The overall design of a time counter that increments by 1 largely misses the point of the simulation.  
+There's no need to spend cycles on time slots when there's no event.  
+The passage of time is represented simply from the popping of events off of the event queue.  
+Furthermore, it's problematic, since you advance the counter one tick every cycle.  
+What if multiple events happen at the same time?  Moreover, your "plenty simple" serve method is incorrect.  
+You shouldn't add the arrivalTime of the customer to the event, which may be taking place after the arrival.  
+For example, if the "event" occurs at time 5 and the customer arrived at time 3.  
+If the customer is going to need 4 seconds, the teller will be free at time 9, not time 12.  
+Try running your code with only a single teller.  The performance should be the same for the two simulations, 
+but your code shows that the single teller takes longer.  This has lead you to give nonsensical answers in the
+thought questions.  Think about which of the two structures allows for customers to be waiting while tellers are free.  
+
+#### Total:  16/21
