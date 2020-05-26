@@ -2,8 +2,10 @@ import java.util.ArrayList;
 import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player; 
 
-//This ended up just being a scale builder, use the scaleBuilder then octave definer
-//Then you can transpose it to a different key
+/*
+ * This is just a testing Scale builder class, tried to make an elaborate Pentatonic
+ * Scale class but it ended up being too long.
+ */
 public class PentatonicScale {
 	
 	public static String scaleBuilder(String scale){

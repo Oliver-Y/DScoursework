@@ -1,12 +1,18 @@
 import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player;
 
+
+/*
+ * This acts as the Song driver class specified in the implementation plan.
+ * It creates all the necessary information to create SongOne(the boogie woogie) 
+ * Song two(Spring) can also be run at the bottom by uncommenting the code.
+ */
 public class BoogieWoogieDriver {
 	public static void main(String[] args){
 		//has all the helper tools to generate melody
 		BoogieWoogieGen b = new BoogieWoogieGen();
+		BoogieWoogieLeft l = new BoogieWoogieLeft(); 
 		Player player = new Player(); 
-
 		//Specify Chords to be used
 		String[] boogie_left1 = new String[]{
 				"C4", "C4", "Eb4", "E4","G4","C4","A4","G4"
@@ -18,9 +24,9 @@ public class BoogieWoogieDriver {
 				"G4", "G4", "Bb4", "B4", "D5", "G4", "E5", "D5",
 		}; 
 		//Create corresponding left hand w/ Boogie generator
-		Pattern first = b.createBoogie(boogie_left1,"V0 "); 
-		Pattern second = b.createBoogie(boogie_left2,"V0 "); 
-		Pattern third = b.createBoogie(boogie_left3,"V0 "); 
+		Pattern first = l.createBoogie(boogie_left1,"V0 "); 
+		Pattern second = l.createBoogie(boogie_left2,"V0 "); 
+		Pattern third = l.createBoogie(boogie_left3,"V0 "); 
 		//Compile into a song
 		Pattern total = new Pattern(); 
 		//Offset the Rhythm by a rest
@@ -47,7 +53,6 @@ public class BoogieWoogieDriver {
 		
 		//Uncomment to play chords
 		//player.play(total,cc);
-
 		
 		//Chords for right hand 
 		String[] temp = new String[]{"G6+E6","A6+F6","C6+G6", "A6+F6", "G6+E6"}; 
@@ -63,6 +68,7 @@ public class BoogieWoogieDriver {
 		Pattern m = b.variation1(temp,"C6"); 
 		m.setVoice(1); 
 		m.setTempo(150);
+		
 		//Repeat for different Keys
 		Pattern f_triad = b.variation1(f,"F6"); 
 		Pattern f_triad_var = b.variation2(f,"F6"); 
@@ -89,13 +95,16 @@ public class BoogieWoogieDriver {
 		//Uncomment to play my version
 		//player.play(total,m_total);
 
-		
 		//Random Boogie Woogie generator
 		Pattern c[] = new Pattern[]{m,m_var}; 
 		Pattern fCluster[] = new Pattern[]{f_triad,f_triad_var}; 
 		Pattern gCluster[] = new Pattern[]{g_triad,g_triad_var}; 
 		Pattern random = b.randomBoogie(c,fCluster,gCluster); 
-		//Uncomment to play Computer versin
+		//Uncomment to play Computer version
 		//player.play(total,random);
+		
+		//unComment to play Spring by Vivaldi
+		// Spring s = new Spring(); 
+		// player.play(s.getSong());
 	}
 }

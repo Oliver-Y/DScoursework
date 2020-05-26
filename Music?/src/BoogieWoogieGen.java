@@ -1,23 +1,16 @@
 import org.jfugue.pattern.Pattern;
 
-public class BoogieWoogieGen {
-	//Create left hand 12 bar blues
-	public  Pattern createBoogie(String[] notes, String voice){
-		String music = voice; 
-		for(int i = 0; i < notes.length; ++i){
-			music += notes[i]; 
-			if(i%2 == 0){
-				music += "q* "; 
-			}
-			else{
-				music += "i* "; 
-			}
-		}
-		music += "| "; 
-		System.out.println(music); 
-		return new Pattern(music); 
-	}
+/*
+ * This is the SongOneMelody class specified in the Design plan. It creates
+ * the melody for the Boogie Woogie based off variations and licks of the C
+ *  F and G major keys 
+ */
+public class BoogieWoogieGen implements MusicEditor {
 	//Create simple melody 
+	Pattern p; 
+	public BoogieWoogieGen(){
+		p = new Pattern(); 
+	}
 	public Pattern melody(String[] notes, String key){
 		String music = ""; 
 		int counter = 0; 
@@ -29,7 +22,10 @@ public class BoogieWoogieGen {
 				music += notes[counter++] + "q* "; 
 			} 
 		}
-		return new Pattern(music); 
+		//Update the recent patttern being passed
+		p = new Pattern(music); 
+		return p; 
+		
 	}
 	//First variation with different rhythms + notes
 	public  Pattern variation1(String[] notes, String key){
@@ -43,8 +39,8 @@ public class BoogieWoogieGen {
 		music += notes[0].substring(3,5) + "b+" + notes[1].substring(3,5) + "i* "; 
 		music += notes[0] + "q* "; 
 		music +=  key + "i* " + key + "q* "; 
-		System.out.println("variation 1:" + music); 
-		return new Pattern(music); 
+		p = new Pattern(music); 
+		return p;
 	}
 	//Second variation with different rhythms + notes
 	public  Pattern variation2(String[] notes, String key){
@@ -53,15 +49,16 @@ public class BoogieWoogieGen {
 		music += notes[0] + "q* " + notes[1] + "i* " + notes[0] + "q* "; 
 		music += key + "i* "; 
 		music +=  "Rq* "; 
-		return new Pattern(music); 
+		p = new Pattern(music); 
+		return p;
 	}
 	//Third custom variation my own creation — doesn't sound that good...
 	public  Pattern variation3(String[] notes, String key){
 		String music = ""; 
 		music += notes[2] + "q* " + key + "i* " + notes[2] + "q* " + key + "i* " + notes[1] + "q* " + key + "i* "; 
 		music +=  "Rq* Ri*"; 
-
-		return new Pattern(music); 
+		p = new Pattern(music); 
+		return p;
 	}
 	//Creates random boogies
 	public  Pattern randomBoogie(Pattern[] c, Pattern[] f, Pattern[] g){
@@ -71,11 +68,11 @@ public class BoogieWoogieGen {
 		total.add(cleanPattern(c,2)); 
 		total.add(cleanPattern(g,2)); 
 		total.add(cleanPattern(c,2)); 
-	
+		p = total;
 		return total; 
 	}
 	//Helper method for Random accounts for teh repeats 
-	public  Pattern cleanPattern(Pattern[] temp, int num){
+	private  Pattern cleanPattern(Pattern[] temp, int num){
 		Pattern total = new Pattern();
 		for(int i = 0; i < num; ++i){
 			total.add(pickPattern(temp)); 
@@ -83,7 +80,7 @@ public class BoogieWoogieGen {
 		return total; 
 	}
 	//Handles "randomness" in the boogie generator
-	public  Pattern pickPattern(Pattern[] temp){
+	private  Pattern pickPattern(Pattern[] temp){
 		int num = (int)(Math.random()*100);
 		if(num > 50){
 			return temp[1]; 
@@ -92,4 +89,26 @@ public class BoogieWoogieGen {
 			return temp[0]; 
 		}
 	}
+	public void setVoice(int i){
+		p.setVoice(i); 
+	}
+	public Pattern getPattern(){ 
+		return p.getPattern(); 
+	}
+	public void setInstrument(String s){
+		p.setInstrument(s); 
+	}
+	public void setTempo(int i){
+		p.setTempo(i); 
+	}
+	public void repeat(int i){
+		p.repeat(i); 
+	}
+	public void add(String s){
+		p.add(s); 
+	}
+	public String toString(){
+		return p.toString(); 
+	}
+
 }
